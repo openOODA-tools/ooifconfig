@@ -1,0 +1,21 @@
+# Maintainer: openOODA-tools <ops@openooda.org>
+pkgname=ooifconfig-bin
+_pkgname=ooifconfig
+pkgver=0.1.0
+pkgrel=1
+pkgdesc="Legacy network interface display reporting MAC addresses, MTUs, and packet RX/TX."
+arch=('x86_64')
+url="https://github.com/openOODA-tools/ooifconfig"
+license=('Apache-2.0')
+depends=('glibc')
+provides=('ooifconfig')
+conflicts=('ooifconfig')
+source_x86_64=("${url}/releases/download/v${pkgver}/ooifconfig-linux-x86_64"
+               "uninstall.sh::https://raw.githubusercontent.com/openOODA-tools/${_pkgname}/v${pkgver}/uninstall.sh")
+sha256sums_x86_64=('SKIP'
+                   'SKIP')
+
+package() {
+    install -Dm755 "${srcdir}/ooifconfig-linux-x86_64" "${pkgdir}/usr/bin/ooifconfig"
+    install -Dm755 uninstall.sh "${pkgdir}/usr/bin/ooifconfig-uninstall"
+}
